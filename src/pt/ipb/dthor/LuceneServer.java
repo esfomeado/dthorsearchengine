@@ -57,7 +57,6 @@ public class LuceneServer {
 
         for (int i = 0; i < torrent.getFiles().size(); i++) {
             doc.add(new TextField(TorrentDoc.FILES, torrent.getFiles().get(i), Field.Store.YES));
-            System.out.println(torrent.getFiles().get(i));
         }
         indexWriter.updateDocument(new Term("id", torrent.getId()), doc);
         indexWriter.close();

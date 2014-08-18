@@ -27,7 +27,6 @@ public class DThorCrawling implements Runnable {
                         searchEngine.indexer(torrentDoc);
                     }
                 }
-                Thread.sleep(5000);
             }
         } catch (Exception ex) {
             Logger.getLogger(DThorCrawling.class.getName()).log(Level.SEVERE, null, ex);

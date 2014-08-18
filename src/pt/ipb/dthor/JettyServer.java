@@ -16,6 +16,7 @@ import org.eclipse.jetty.plus.annotation.ContainerInitializer;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.webapp.WebAppContext;
+import pt.ipb.dthor.servlets.RemoteTorrentSearch;
 import pt.ipb.dthor.servlets.TorrentSearch;
 
 public class JettyServer {
@@ -59,6 +60,7 @@ public class JettyServer {
         context.setAttribute("javax.servlet.context.tempdir", writeDir);
         context.setResourceBase(webRootURI.toASCIIString());
 
+        context.addServlet(RemoteTorrentSearch.class, "/remotesearch");
         context.addServlet(TorrentSearch.class, "/search");
 
         server.setHandler(context);

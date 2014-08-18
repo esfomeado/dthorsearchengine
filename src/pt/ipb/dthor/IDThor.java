@@ -8,4 +8,6 @@ import pt.ipb.dthor.torrent.DThorTorrent;
 public interface IDThor {
 
     public ArrayList<DThorTorrent> getTorrents(ArrayList<Number160> keys) throws ClassNotFoundException, IOException;
+
+    public DThorTorrent searchTorrent(Number160 key) throws ClassNotFoundException, IOException;
 }

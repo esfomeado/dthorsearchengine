@@ -25,7 +25,7 @@ public class DThorTomP2P implements IDThor {
     private PeerDHT peer;
 
     public static DThorTomP2P getInstance() throws IOException, Exception {
-        if (instance == null) {
+        if(instance == null) {
             instance = new DThorTomP2P();
         }
         return instance;
@@ -40,7 +40,7 @@ public class DThorTomP2P implements IDThor {
         FutureDiscover discovery = peer.peer().discover().peerAddress(peerAddress).start();
         discovery.awaitUninterruptibly();
 
-        if (discovery.isFailed()) {
+        if(discovery.isFailed()) {
             //Executar NAT
         }
 
@@ -49,7 +49,7 @@ public class DThorTomP2P implements IDThor {
         FutureBootstrap bootstrap = peer.peer().bootstrap().peerAddress(peerAddress).start();
         bootstrap.awaitUninterruptibly();
 
-        if (bootstrap.isFailed()) {
+        if(bootstrap.isFailed()) {
             throw new Exception("Failed to bootstrap to host " + bootstrap.failedReason());
         }
 
@@ -60,7 +60,7 @@ public class DThorTomP2P implements IDThor {
     public ArrayList<DThorTorrent> getTorrents(ArrayList<Number160> keys) throws ClassNotFoundException, IOException {
         ArrayList<DThorTorrent> torrents = new ArrayList<>();
 
-        for (Number160 key : keys) {
+        for(Number160 key : keys) {
             FutureGet fg = peer.get(key).start();
             fg.awaitUninterruptibly();
 
@@ -72,6 +72,16 @@ public class DThorTomP2P implements IDThor {
         return torrents;
     }
 
+    @Override
+    public DThorTorrent searchTorrent(Number160 key) throws ClassNotFoundException, IOException {
+        FutureGet fg = peer.get(key).start();
+        fg.awaitUninterruptibly();
+
+        Data torrentData = fg.data();
+
+        return (DThorTorrent) torrentData.object();
+    }
+
     public List<PeerAddress> getPeers() {
         List<PeerAddress> peers = peer.peerBean().peerMap().all();
 
@@ -81,13 +91,13 @@ public class DThorTomP2P implements IDThor {
     public ArrayList<Number160> requestKeys(final PeerAddress destination) throws ClassNotFoundException, IOException {
         FutureDirect request = peer.peer().sendDirect(destination).object("keys").start();
         request.awaitUninterruptibly();
-        
+
         ArrayList<Number160> keys = new ArrayList<>();
-        
+
         if(request.isSuccess()) {
-           keys = (ArrayList<Number160>)request.object();
+            keys = (ArrayList<Number160>) request.object();
         }
-        
+
         return keys;
     }
 }
