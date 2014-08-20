@@ -22,10 +22,6 @@
                     <div class="container">
                         <h1 class="brand"><a href="index.jsp">DThor!</a></h1>
                         <nav class="pull-right nav-collapse collapse">
-                            <ul id="menu-main" class="nav">
-                                <li><a title="uploadbox" href="index.html#uploadbox">Upload Torrent</a>
-                                </li>
-                            </ul>
                         </nav>
                     </div>
                 </div>

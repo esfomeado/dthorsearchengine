@@ -40,10 +40,6 @@ public class DThorTomP2P implements IDThor {
         FutureDiscover discovery = peer.peer().discover().peerAddress(peerAddress).start();
         discovery.awaitUninterruptibly();
 
-        if(discovery.isFailed()) {
-            //Executar NAT
-        }
-
         peerAddress = discovery.peerAddress();
 
         FutureBootstrap bootstrap = peer.peer().bootstrap().peerAddress(peerAddress).start();

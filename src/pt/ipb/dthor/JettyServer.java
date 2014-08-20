@@ -17,6 +17,7 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.webapp.WebAppContext;
 import pt.ipb.dthor.servlets.RemoteTorrentSearch;
+import pt.ipb.dthor.servlets.TorrentDelete;
 import pt.ipb.dthor.servlets.TorrentSearch;
 
 public class JettyServer {
@@ -62,6 +63,7 @@ public class JettyServer {
 
         context.addServlet(RemoteTorrentSearch.class, "/remotesearch");
         context.addServlet(TorrentSearch.class, "/search");
+        context.addServlet(TorrentDelete.class, "/delete");
 
         server.setHandler(context);
 

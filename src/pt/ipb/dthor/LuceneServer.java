@@ -32,7 +32,7 @@ public class LuceneServer {
     private StandardAnalyzer analyzer;
 
     public static LuceneServer getInstance() {
-        if (instance == null) {
+        if(instance == null) {
             instance = new LuceneServer();
         }
         return instance;
@@ -55,7 +55,7 @@ public class LuceneServer {
         doc.add(new StringField(TorrentDoc.ID, torrent.getId(), Field.Store.YES));
         doc.add(new TextField(TorrentDoc.TITLE, torrent.getTitle(), Field.Store.YES));
 
-        for (int i = 0; i < torrent.getFiles().size(); i++) {
+        for(int i = 0; i < torrent.getFiles().size(); i++) {
             doc.add(new TextField(TorrentDoc.FILES, torrent.getFiles().get(i), Field.Store.YES));
         }
         indexWriter.updateDocument(new Term("id", torrent.getId()), doc);
@@ -77,7 +77,7 @@ public class LuceneServer {
 
         JSONArray results = new JSONArray();
         System.out.println("Found " + topDocs.totalHits + " hits");
-        for (int i = 0; i < topDocs.totalHits; i++) {
+        for(int i = 0; i < topDocs.totalHits; i++) {
             JSONObject result = new JSONObject();
             result.put("key", searcher.doc(topDocs.scoreDocs[i].doc).get(TorrentDoc.ID));
             result.put("title", searcher.doc(topDocs.scoreDocs[i].doc).get(TorrentDoc.TITLE));
@@ -85,5 +85,13 @@ public class LuceneServer {
         }
 
         return results.toJSONString();
+    }
+
+    public void delete(String key) throws IOException {
+        IndexWriterConfig config = new IndexWriterConfig(Version.LUCENE_4_9, analyzer);
+        IndexWriter indexWriter = new IndexWriter(FSDirectory.open(new File(indexDir)), config);
+        
+        indexWriter.deleteDocuments(new Term("id", key));
+        indexWriter.close();
     }
 }
