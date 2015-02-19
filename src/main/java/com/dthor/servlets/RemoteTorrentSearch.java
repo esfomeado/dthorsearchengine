@@ -1,4 +1,4 @@
-package pt.ipb.dthor.servlets;
+package com.dthor.servlets;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.lucene.queryparser.classic.ParseException;
-import pt.ipb.dthor.LuceneServer;
+import com.dthor.LuceneServer;
 
 public class RemoteTorrentSearch extends HttpServlet {
 

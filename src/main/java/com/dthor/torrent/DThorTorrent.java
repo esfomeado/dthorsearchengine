@@ -1,4 +1,4 @@
-package pt.ipb.dthor.torrent;
+package com.dthor.torrent;
 
 import java.io.Serializable;
 import java.net.URI;

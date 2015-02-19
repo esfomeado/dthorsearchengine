@@ -1,4 +1,4 @@
-package pt.ipb.dthor.servlets;
+package com.dthor.servlets;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -14,10 +14,10 @@ import org.apache.lucene.queryparser.classic.ParseException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import pt.ipb.dthor.DThorTomP2P;
-import pt.ipb.dthor.LuceneServer;
-import pt.ipb.dthor.torrent.DThorTorrent;
-import pt.ipb.dthor.torrent.TorrentParser;
+import com.dthor.DThorTomP2P;
+import com.dthor.LuceneServer;
+import com.dthor.torrent.DThorTorrent;
+import com.dthor.torrent.TorrentParser;
 
 public class TorrentSearch extends HttpServlet {
 

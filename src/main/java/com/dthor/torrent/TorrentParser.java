@@ -1,4 +1,4 @@
-package pt.ipb.dthor.torrent;
+package com.dthor.torrent;
 
 import com.turn.ttorrent.bcodec.BDecoder;
 import com.turn.ttorrent.bcodec.BEValue;

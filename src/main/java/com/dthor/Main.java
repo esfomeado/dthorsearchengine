@@ -1,4 +1,4 @@
-package pt.ipb.dthor;
+package com.dthor;
 
 public class Main {
 

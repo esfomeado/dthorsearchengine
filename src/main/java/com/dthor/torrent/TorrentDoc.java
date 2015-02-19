@@ -1,4 +1,4 @@
-package pt.ipb.dthor.torrent;
+package com.dthor.torrent;
 
 import java.util.List;
 
